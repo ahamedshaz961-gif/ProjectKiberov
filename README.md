@@ -46,9 +46,17 @@ icotitle - icon title
 
 selected - selected icon state
 
-contacticon - contact icon
+desktop - desktop area
+
+folder - folder button
+
+foldericon - folder icon
+
+folderlabel - folder name
 
 projicon - projects icon
+
+contacticon - contact icon
 
 ## js
 
@@ -69,6 +77,8 @@ dom - dom references
 t - temporary value
 
 cls - class name
+
+f - folder value
 
 views - available views
 

@@ -17,6 +17,7 @@ function queryrefs()
     dom.homeview = document.getElementById("homeview");
     dom.projicon = document.querySelector(".projicon");
     dom.contacticon = document.querySelector(".contacticon");
+    dom.folders = document.querySelectorAll(".folder");
 }
 
 function onnavclick(ev)
@@ -77,6 +78,20 @@ function init()
     if (dom.navcontact) dom.navcontact.addEventListener("click", onnavclick, false);
     if (dom.projicon) dom.projicon.addEventListener("click", oniconclick, false);
     if (dom.contacticon) dom.contacticon.addEventListener("click", oniconclick, false);
+    if (dom.folders && dom.folders.length)
+    {
+        dom.folders.forEach(function(f)
+        {
+            f.addEventListener("click", function()
+            {
+                f.classList.add("selected");
+                setTimeout(function()
+                {
+                    f.classList.remove("selected");
+                }, 200);
+            }, false);
+        });
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function()
