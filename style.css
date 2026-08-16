@@ -110,3 +110,47 @@ main
         font-size: 20px;
     }
 }
+
+/* home */
+.hero
+{
+    margin-bottom: 18px;
+}
+
+.iconrow
+{
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.deskico
+{
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(#f5f7fb,#dfe7ef);
+    border: 2px solid #9aa8b4;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.icotitle
+{
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    text-transform: none;
+}
+
+.deskico:focus
+{
+    outline: 3px solid #fff1a8;
+}
+
+.selected
+{
+    background: linear-gradient(#cfe8ff,#a9d0ff);
+    border-color: #6b9edb;
+}

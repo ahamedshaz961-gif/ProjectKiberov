@@ -8,6 +8,10 @@ main - main content area
 
 homeview - home view container
 
+projectsview - projects view
+
+contactview - contact view
+
 ## css
 
 navhm - navigation home element
@@ -26,25 +30,41 @@ navcontact - contact navigation button
 
 title - main title
 
-lead - introductory text
+lead - main text
 
 view - page view
 
 active - active view state
 
+hero - home hero section
+
+iconrow - home icon row
+
+deskico - desktop icon button
+
+icotitle - icon title
+
+selected - selected icon state
+
+contacticon - contact icon
+
+projicon - projects icon
+
 ## js
 
-queryrefs - gets DOM references
+queryrefs - gets dom references
 
 onnavclick - handles navigation clicks
 
-showview - switches between views
+oniconclick - handles icon clicks
 
-init - initializes the site
+showview - switches views
+
+init - starts the site
 
 projdata - project data
 
-dom - DOM references
+dom - dom references
 
 t - temporary value
 
