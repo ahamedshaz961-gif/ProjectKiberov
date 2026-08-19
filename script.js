@@ -6,7 +6,10 @@ const dom = {
     navcontact: null,
     homeview: null,
     projicon: null,
-    contacticon: null
+    contacticon: null,
+    folders: null,
+    startbtn: null,
+    clock: null
 };
 
 function queryrefs()
@@ -18,6 +21,8 @@ function queryrefs()
     dom.projicon = document.querySelector(".projicon");
     dom.contacticon = document.querySelector(".contacticon");
     dom.folders = document.querySelectorAll(".folder");
+    dom.startbtn = document.querySelector(".startbtn");
+    dom.clock = document.querySelector(".clock");
 }
 
 function onnavclick(ev)
@@ -70,6 +75,20 @@ function showview(id)
     }
 }
 
+function updateclock()
+{
+    if (!dom.clock) return;
+    const d = new Date();
+    let h = d.getHours();
+    const m = d.getMinutes();
+    const pm = h >= 12;
+    h = h % 12;
+    if (h === 0) h = 12;
+    const mm = m < 10 ? "0" + m : String(m);
+    const label = h + ":" + mm + (pm ? " PM" : " AM");
+    dom.clock.textContent = label;
+}
+
 function init()
 {
     queryrefs();
@@ -92,6 +111,21 @@ function init()
             }, false);
         });
     }
+
+    if (dom.startbtn)
+    {
+        dom.startbtn.addEventListener("click", function()
+        {
+            dom.startbtn.classList.add("selected");
+            setTimeout(function()
+            {
+                dom.startbtn.classList.remove("selected");
+            }, 150);
+        }, false);
+    }
+
+    updateclock();
+    setInterval(updateclock, 1000);
 }
 
 document.addEventListener("DOMContentLoaded", function()
