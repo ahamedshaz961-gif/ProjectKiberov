@@ -122,6 +122,3 @@ label - clock text
 
 --pixelfont - pixel font
 
-![image](https://cdn.hackclub.com/01a011db-438d-7982-b1f6-d88c532d4a2c/image.png)
-added taskbar and live clock
-Worked on the taskbar and added the start button, task area, separator, and live clock. Added the taskbar styling and connected the clock to update automatically with the current time. Also added basic focus and selected states for the start button.
