@@ -256,3 +256,6 @@ the design is inspired by the look and feel of Windows XP and old desktop interf
 the website is still being worked on.
 
 i'll keep replacing the placeholder projects, contact icons and other assets with the actual ones as i finish them.
+
+
+demo url : https://ahamedshaz961-gif.github.io/ProjectKiberov/
