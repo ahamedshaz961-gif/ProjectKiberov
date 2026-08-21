@@ -190,6 +190,18 @@ desktop scale - desktop and folder sizes reduce on smaller screens to preserve l
 
 projimage responsive - project image scales down with max-width:100% and preserved aspect ratio
 
+## new (part13)
+
+semantic html - use native elements and roles for accessibility
+
+aria labels - useful aria-labels and aria-modal for dialogs
+
+alt text - project images include alt text when provided
+
+focus outline - visible xp-style focus outlines for keyboard users
+
+keyboard support - Tab, Enter, Space, and Esc support interactive controls
+
 added contact desktop
 Added the contact desktop using the same desktop style and Bliss background as the projects section. Kept it empty for the contact features that will be added later.
 ![image](https://cdn.hackclub.com/01a0120c-b5e4-7074-97dc-3429b4833695/image.png)

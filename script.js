@@ -127,6 +127,7 @@ function renderfolders()
         ic.className = "foldericon";
         const iconurl = p.icon && p.icon.length ? p.icon : "assets/ui/folder.svg";
         ic.style.backgroundImage = "url('" + iconurl + "')";
+ic.setAttribute("aria-hidden", "true");
 
 const lbl = document.createElement("div");
 lbl.className = "folderlabel";
@@ -193,6 +194,7 @@ function openproj(index)
     const w = document.createElement("div");
     w.className = "projwin";
     w.setAttribute("role", "dialog");
+    w.setAttribute("aria-modal", "true");
     w.setAttribute("aria-label", p.name);
     w.setAttribute("data-index", String(index));
 
