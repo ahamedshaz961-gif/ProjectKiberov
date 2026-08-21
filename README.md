@@ -168,5 +168,10 @@ githublink - css class for the text-only github link
 
 demolink - css class for the text-only demo link
 
-fixed start button and loading cursor
-Fixed the start button so it returns to the home view from any page. Also fixed the project loading cursor so it appears for 1 second before the project window opens.
+## new (part10)
+
+contactdesk - id for the contact desktop region (uses existing .desktop styling and bliss wallpaper)
+
+added contact desktop
+Added the contact desktop using the same desktop style and Bliss background as the projects section. Kept it empty for the contact features that will be added later.
+![image](https://cdn.hackclub.com/01a0120c-b5e4-7074-97dc-3429b4833695/image.png)
