@@ -122,6 +122,51 @@ label - clock text
 
 --pixelfont - pixel font
 
-![image](https://cdn.hackclub.com/01a011db-438d-7982-b1f6-d88c532d4a2c/image.png)
-added taskbar and live clock
-Worked on the taskbar and added the start button, task area, separator, and live clock. Added the taskbar styling and connected the clock to update automatically with the current time. Also added basic focus and selected states for the start button.
+## new (part6)
+
+renderfolders - js function to generate project folder buttons from projdata
+
+folderactivate - js function that handles folder activation (selection) on click
+
+desktop - css class for the projects desktop area where folders are placed
+
+projdata keys:
+- name - project short name
+- icon - optional custom folder icon path
+- image - optional project image path
+- description - optional project description
+- github - optional github url
+- demo - optional demo url
+
+## new (part7)
+
+openproj - js function to create and show a project window for a project index
+
+closeproj - js function to close the open project window (if any)
+
+projwin - css class for the project window frame (800×550)
+
+wintitle - css class for the window title bar
+
+wintitleicon - css class for the 16×16 shared kiberov icon in the title bar
+
+wintitletext - css class for the project name in the title bar
+
+winclose - css class for the red close button in the title bar
+
+wincontent - css class for the window content area (currently empty)
+
+## new (part8)
+
+projtitle - css class for the large project title inside the window (pixel font)
+
+projimage - css class for the project image block (600×280, object-fit: cover)
+
+projdesc - css class for the project description paragraph
+
+githublink - css class for the text-only github link
+
+demolink - css class for the text-only demo link
+
+fixed start button and loading cursor
+Fixed the start button so it returns to the home view from any page. Also fixed the project loading cursor so it appears for 1 second before the project window opens.
