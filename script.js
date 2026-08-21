@@ -1,6 +1,6 @@
 const projdata = [
     {
-        name: "proj1",
+        name: "Sputnik",
         icon: "",
         image: "assets/projects/proj1.png",
         description: "kiberov sputnik — experimental site",
@@ -8,22 +8,68 @@ const projdata = [
         demo: "https://ahamedshaz961-gif.github.io/kiberovsputnik/"
     },
     {
-        name: "proj2",
+        name: "Kiberov Chrome",
         icon: "",
-        image: "",
-        description: "",
-        github: "",
-        demo: ""
+        image: "assets/projects/proj2.png",
+        description: "KIBEROVCHROME is my personal website and a place to put some of the things I build, learn, and work on.",
+        github: "https://github.com/ahamedshaz961-gif/kiberovchrome",
+        demo: "https://ahamedshaz961-gif.github.io/kiberovchrome/"
     },
     {
-        name: "proj3",
+        name: "KiberovPeek",
         icon: "",
-        image: "",
-        description: "",
-        github: "",
-        demo: ""
+        image: "assets/projects/proj3.png",
+        description: "KIBEROVPEEK is a simple image viewer for my personal collection.",
+        github: "https://github.com/ahamedshaz961-gif/kiberovpeek",
     }
+    
 ];
+const contactdata = [
+    { name: "github", image: "assets/contact/github.png", link: "https://github.com/ahamedshaz961-gif" },
+    { name: "slack",  image: "assets/contact/slack.png", link: "https://hackclub.enterprise.slack.com/team/U0BNV2ZM5MZ" },
+    { name: "gmail", image: "assets/contact/gmail.png", link: "https://mail.google.com/mail/u/0/#inbox?compose=CllgCJfttvXTrGNTDSBhvHrFcMSRbNVCZtCJJGmqqwHbLqdVSrLnqkwNLcwqDgdRNZBlFBLpbF" }
+];
+
+function rendercontacts()
+{
+    const desk = document.getElementById("contactdesk");
+    if (!desk) return;
+    const area = desk.querySelector(".contactarea");
+    if (!area) return;
+    area.innerHTML = "";
+    contactdata.forEach(function(c, idx)
+    {
+        const b = document.createElement("div");
+        b.className = "contactentry";
+        b.setAttribute("data-index", String(idx));
+        b.setAttribute("aria-label", c.name + " contact");
+
+        const ic = document.createElement("div");
+        ic.className = "contacticon";
+        if (c.image && c.image.length)
+        {
+            ic.style.backgroundImage = "url('" + c.image + "')";
+        }
+        ic.setAttribute("aria-hidden", "true");
+
+        const lbl = document.createElement("div");
+        lbl.className = "contactlabel";
+        lbl.textContent = c.name;
+
+        b.appendChild(ic);
+        b.appendChild(lbl);
+
+        b.addEventListener("click", function()
+        {
+            if (c.link && c.link.length)
+            {
+                window.open(c.link, "_blank");
+            }
+        }, false);
+
+        area.appendChild(b);
+    });
+}
 
 const dom = {
     navhome: null,
@@ -47,6 +93,8 @@ function queryrefs()
     dom.projicon = document.querySelector(".projicon");
     dom.contacticon = document.querySelector(".contacticon");
     dom.desktop = document.querySelector(".desktop");
+    dom.folderarea = document.querySelector(".folderarea");
+    dom.contactarea = document.querySelector(".contactarea");
     dom.folders = document.querySelectorAll(".folder");
     dom.startbtn = document.querySelector(".startbtn");
     dom.clock = document.querySelector(".clock");
@@ -99,7 +147,6 @@ function showview(id)
     if (target)
     {
         target.classList.add("active");
-        // focus first interactive element for keyboard navigation (instant transition)
         setTimeout(function()
         {
             const focusable = target.querySelector("button, a[href], input, [tabindex]:not([tabindex='-1'])");
@@ -113,8 +160,9 @@ function showview(id)
 
 function renderfolders()
 {
-    if (!dom.desktop) return;
-    dom.desktop.innerHTML = "";
+    const area = document.querySelector(".folderarea");
+    if (!area) return;
+    area.innerHTML = "";
     projdata.forEach(function(p, idx)
     {
         const b = document.createElement("button");
@@ -127,21 +175,21 @@ function renderfolders()
         ic.className = "foldericon";
         const iconurl = p.icon && p.icon.length ? p.icon : "assets/ui/folder.svg";
         ic.style.backgroundImage = "url('" + iconurl + "')";
-ic.setAttribute("aria-hidden", "true");
+        ic.setAttribute("aria-hidden", "true");
 
-const lbl = document.createElement("div");
-lbl.className = "folderlabel";
-lbl.textContent = p.name;
+        const lbl = document.createElement("div");
+        lbl.className = "folderlabel";
+        lbl.textContent = p.name;
 
-b.appendChild(ic);
-b.appendChild(lbl);
+        b.appendChild(ic);
+        b.appendChild(lbl);
 
-b.addEventListener("click", function()
-{
-    folderactivate(idx);
-}, false);
+        b.addEventListener("click", function()
+        {
+            folderactivate(idx);
+        }, false);
 
-dom.desktop.appendChild(b);
+        area.appendChild(b);
     });
     dom.folders = document.querySelectorAll(".folder");
 }
@@ -157,25 +205,20 @@ function folderactivate(index)
     const el = document.querySelector(".folder[data-index='" + index + "']");
     if (!el) return;
 
-    // close any existing project window immediately (spec requires closing before opening new)
     closeproj();
 
-    // visual feedback then loading cursor for 1 second
     el.classList.add("selected");
     isloading = true;
-    // set cursor on the clicked element to ensure the wait cursor is visible even if the element has its own cursor style
     el.style.cursor = "wait";
     document.documentElement.style.cursor = "wait";
     document.body.style.cursor = "wait";
 
     loadingTimer = setTimeout(function()
     {
-        // restore cursor and open project window
         el.style.cursor = "";
         document.body.style.cursor = "";
         document.documentElement.style.cursor = "";
 
-        // remove visual selection (folder returns to normal)
         el.classList.remove("selected");
 
         openproj(index);
@@ -189,7 +232,7 @@ function openproj(index)
 {
     const p = projdata[index];
     if (!p) return;
-    closeproj(); // ensure only one window at a time
+    closeproj(); 
 
     const w = document.createElement("div");
     w.className = "projwin";
@@ -226,7 +269,6 @@ function openproj(index)
     const content = document.createElement("div");
     content.className = "wincontent";
 
-    // project title inside content (large pixel font)
     if (p.name && p.name.length)
     {
         const h = document.createElement("h1");
@@ -235,7 +277,7 @@ function openproj(index)
         content.appendChild(h);
     }
 
-    // project image (only when provided)
+    
     if (p.image && p.image.length)
     {
         const img = document.createElement("img");
@@ -245,7 +287,7 @@ function openproj(index)
         content.appendChild(img);
     }
 
-    // description (only when provided)
+    
     if (p.description && p.description.length)
     {
         const pd = document.createElement("p");
@@ -254,7 +296,6 @@ function openproj(index)
         content.appendChild(pd);
     }
 
-    // links (text-only) - github then demo if present
     if (p.github && p.github.length)
     {
         const a = document.createElement("a");
@@ -281,13 +322,11 @@ function openproj(index)
 
     document.body.appendChild(w);
 
-    // focus the close button for accessibility
     close.focus();
 }
 
 function closeproj()
 {
-    // if a loading is in progress, cancel it and restore cursor
     if (loadingTimer)
     {
         clearTimeout(loadingTimer);
@@ -309,7 +348,6 @@ function closeproj()
         existing.parentNode.removeChild(existing);
     }
 
-    // ensure any folder selection is cleared when closing window
     const sel = document.querySelectorAll(".folder.selected");
     if (sel && sel.length)
     {
@@ -344,12 +382,14 @@ function init()
     if (dom.contacticon) dom.contacticon.addEventListener("click", oniconclick, false);
 
     renderfolders();
+    rendercontacts();
+
+   
 
     if (dom.startbtn)
     {
         dom.startbtn.addEventListener("click", function()
         {
-            // act as home button: show home view, cancel loading, close windows, clear selection
             dom.startbtn.classList.add("selected");
             showview("homeview");
             closeproj();
@@ -363,7 +403,6 @@ function init()
     updateclock();
     setInterval(updateclock, 1000);
 
-    // esc closes project window
     document.addEventListener("keydown", function(ev)
     {
         if (ev.key === "Escape")

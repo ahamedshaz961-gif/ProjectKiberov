@@ -47,8 +47,22 @@ body
 
 .brand
 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-weight: bold;
     font-size: 20px;
+}
+
+.headericon
+{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url("assets/ui/kiberov.svg");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .nav
@@ -59,11 +73,12 @@ body
 
 .navbtn
 {
-    background: linear-gradient(#e9e9e9,#cfcfcf);
+    background: linear-gradient(#f7f9fb,#d0d7de);
     border: 1px solid #8b8b8b;
     padding: 6px 10px;
     cursor: pointer;
     font-family: Tahoma, sans-serif;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
 .navbtn:focus
@@ -75,7 +90,8 @@ main
 {
     background: #ffffff;
     padding: 24px;
-    border: 2px solid #9aa8b4;
+    border: 4px solid #9aa8b4; /* thicker xp bezel */
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(0,0,0,0.12);
 }
 
 .title
@@ -89,15 +105,38 @@ main
     margin: 0 0 12px 0;
 }
 
+/* views: occupy the same usable viewport area inside #main */
 .view
 {
+    position: absolute;
+    inset: 0;
     display: none;
+    overflow: auto;
 }
 
 .view.active
 {
     display: block;
 }
+
+/* make #app fill the usable area above the taskbar and allow main to host positioned views */
+#app
+{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 36px);
+}
+
+main#main
+{
+    flex: 1 1 auto;
+    position: relative;
+}
+
 
 @media (max-width: 900px)
 {
@@ -153,6 +192,12 @@ main
         min-height: 180px;
     }
 
+    #homeview
+    {
+        padding: 8px;
+        min-height: 180px;
+    }
+
     .folder
     {
         width: 64px;
@@ -179,17 +224,128 @@ main
 
 
 /* home */
-.hero
+#homeview
 {
-    margin-bottom: 18px;
+    background-image: url("assets/home/home.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.iconrow
+/* welcome screen */
+.welcwrap
+{
+    max-width: 720px;
+    width: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.welctitle
+{
+    font-family: Tahoma, sans-serif;
+    font-size: 36px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    margin: 0 0 18px 0;
+    letter-spacing: 2px;
+}
+
+.welcopts
 {
     display: flex;
-    gap: 18px;
-    align-items: flex-start;
+    gap: 16px;
+    justify-content: center;
 }
+
+.welcbtn
+{
+    padding: 10px 16px;
+    font-family: Tahoma, sans-serif;
+    font-size: 16px;
+    border: 2px solid #6b9edb;
+    background: linear-gradient(#cfe8ff,#93b8eb);
+    color: #052a49;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.welcbtn:focus
+{
+    outline: 3px solid #fff1a8;
+}
+
+.sesswrap
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.sesstitle
+{
+    font-family: Tahoma, sans-serif;
+    font-size: 28px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+}
+
+@media (max-width: 480px)
+{
+    #app
+    {
+        padding: 8px;
+    }
+    .title
+    {
+        font-size: 18px;
+    }
+
+    .desktop
+    {
+        padding: 8px;
+        min-height: 180px;
+    }
+
+    #homeview
+    {
+        padding: 8px;
+        min-height: 180px;
+    }
+
+    .folder
+    {
+        width: 64px;
+        height: 84px;
+    }
+
+    .foldericon
+    {
+        width: 48px;
+        height: 36px;
+    }
+
+    .projtitle
+    {
+        font-size: 20px;
+    }
+
+    .projimage
+    {
+        width: 100%;
+        height: auto;
+    }
+}
+
 
 .deskico
 {
@@ -225,17 +381,73 @@ main
 /* desktop */
 .desktop
 {
-    min-height: 420px;
+    min-height: 100%;
     background-color: #1e5aa0;
     background-image: url("assets/desktop/bliss.jpg");
     background-size: cover;
     background-position: center;
     padding: 18px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 18px;
-    align-items: flex-start;
-    flex-wrap: wrap;
 }
+
+.folderarea
+{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 980px;
+    padding-top: 12px;
+}
+
+.contactarea
+{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 980px;
+    padding-top: 12px;
+}
+
+/* contact entries */
+.contactentry
+{
+    width: 120px;
+    height: 84px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(#fbfbfb,#dcdcdc);
+    border: 2px solid #9aa8b4;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.contacticon
+{
+    width: 56px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #9aa8b4;
+}
+
+.contactlabel
+{
+    font-size: 12px;
+    text-align: center;
+    color: #052a49;
+}
+
+
 
 /* taskbar */
 .taskbar
@@ -255,35 +467,64 @@ main
     z-index: 50;
 }
 
+.taskicon
+{
+    width: 16px;
+    height: 16px;
+    background-image: url("assets/ui/kiberov.svg");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.95;
+    margin-left: 4px;
+    pointer-events: none; /* do not interfere with Start clicks */
+}
+
+
 /* project window */
 .projwin
 {
-    width: min(800px, 92vw);
+    /* width clamps to desktop size, viewport width, and vertical-fit derived width */
+    width: min(800px, 92vw, calc((100vh - 72px) * 800 / 550));
     aspect-ratio: 800 / 550;
     height: auto;
     position: fixed;
     left: 50%;
-    top: calc((100vh - 36px) / 2);
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     background: #dcdcdc;
     border: 2px solid #a0a0a0; /* thin xp bevel */
     box-sizing: border-box;
     z-index: 60;
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 56px);
+    /* ensure window always fits above taskbar with margin */
+    max-height: calc(100vh - 72px);
+    overflow: visible;
 }
 
 .wintitle
 {
     height: 28px;
-    background: linear-gradient(#d7e8ff,#9fbff3);
+    background: linear-gradient(#d9e9ff,#93b8eb);
     border-bottom: 1px solid #7b9fc6;
     display: flex;
     align-items: center;
     padding: 0 8px;
     gap: 8px;
     user-select: none;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
+}
+
+.wintitletext
+{
+    font-family: var(--pixelfont), Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .wintitleicon
@@ -339,7 +580,11 @@ button:focus, a:focus, [tabindex]:focus
     flex: 1 1 auto;
     padding: 16px;
     background: #ffffff;
+    /* allow content to scroll when taller than window */
+    overflow: auto;
+    min-height: 0; /* allow flex children to shrink properly */
 }
+
 
 /* project content */
 .projtitle
@@ -367,25 +612,29 @@ button:focus, a:focus, [tabindex]:focus
 {
     margin: 0 0 12px 0;
     color: #222222;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .githublink, .demolink
 {
-    display: inline-block;
+    display: inline;
     margin-right: 18px;
     text-decoration: underline;
     color: #0000ee;
     font-family: Tahoma, sans-serif;
+    word-break: break-word;
 }
 
 .startbtn
 {
-    background: linear-gradient(#f9f9f9,#dcdcdc);
+    background: linear-gradient(#fbfbfb,#dcdcdc);
     border: 1px solid #7b8fa6;
     padding: 4px 10px;
     cursor: pointer;
     font-family: Tahoma, sans-serif;
     font-size: 13px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 .startbtn:focus
@@ -450,8 +699,9 @@ button:focus, a:focus, [tabindex]:focus
 {
     font-family: Tahoma, sans-serif;
     font-size: 12px;
-    color: #000000;
+    color: #111111;
     word-break: break-word;
+    text-align: center;
 }
 
 .folder:hover .foldericon

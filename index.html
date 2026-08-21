@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <header class="navhm">
-            <div class="brand">KIBEROV</div>
+        <div class="brand"><span class="headericon" aria-hidden="true"></span>KIBEROV</div>
             <nav class="nav">
                 <button class="navbtn navhome" type="button" aria-label="home">home</button>
                 <button class="navbtn navproj" type="button" aria-label="projects">projects</button>
@@ -21,36 +21,39 @@
 
         <main id="main" role="main">
             <section id="homeview" class="view active">
-                <div class="hero">
-                    <h1 class="title">home</h1>
-                    <p class="lead">home layout</p>
+                <div class="welcwrap" role="region" aria-label="welcome">
+                    <h1 class="welctitle">PROJECT KIBEROV</h1>
+                    <div class="welcopts" role="navigation" aria-label="welcome options">
+                        <button class="welcbtn projicon" type="button" aria-label="projects">projects</button>
+                        <button class="welcbtn contacticon" type="button" aria-label="contact">contact</button>
+                    </div>
                 </div>
-
-                <div class="iconrow" role="navigation" aria-label="desktop shortcuts">
-                    <button class="deskico projicon" type="button" aria-label="open projects" title="projects">
-                        <div class="icotitle">projects</div>
-                    </button>
-
-                    <button class="deskico contacticon" type="button" aria-label="open contact" title="contact">
-                        <div class="icotitle">contact</div>
-                    </button>
-                </div>
-
             </section>
 
             <section id="projectsview" class="view">
                 <div class="desktop" role="region" aria-label="projects desktop">
+                    <div class="sesswrap" role="region" aria-label="projects header">
+                        <h2 class="sesstitle">PROJECTS</h2>
+                    </div>
+                    <div class="folderarea" role="list" aria-label="project folders">
+                    </div>
                 </div>
             </section>
 
             <section id="contactview" class="view">
                 <div class="desktop" id="contactdesk" role="region" aria-label="contact desktop">
+                    <div class="sesswrap" role="region" aria-label="contacts header">
+                        <h2 class="sesstitle">CONTACTS</h2>
+                    </div>
+                    <div class="contactarea" role="list" aria-label="contact entries">
+                    </div>
                 </div>
             </section>
         </main>
 
         <div class="taskbar" role="navigation" aria-label="taskbar">
             <button class="startbtn" type="button" aria-label="start">start</button>
+            <div class="taskicon" aria-hidden="true"></div>
             <div class="taskarea" aria-hidden="true"></div>
             <div class="tasksep" aria-hidden="true"></div>
             <div class="clock" aria-label="clock" role="status">--:--</div>

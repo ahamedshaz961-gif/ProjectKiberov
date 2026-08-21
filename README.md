@@ -1,207 +1,258 @@
-# names
+# KIBEROV
 
-## html
+a small windows xp inspired personal website made with html, css and javascript.
 
-app - main application container
+it is designed to feel like an old desktop interface, with a home screen, projects section, contact section, taskbar, folders and project windows.
 
-main - main content area
+## what is this
 
-homeview - home view container
+KIBEROV is my personal space for showing the things i build and work on.
+
+the website has:
+
+* a xp style home screen
+* projects section with folder-like project icons
+* project windows with images, descriptions and links
+* contact section with clickable contact options
+* windows xp style taskbar
+* live clock
+* loading cursor when opening projects
+* responsive layout for smaller screens
+* keyboard support
+* xp style buttons, borders and window bezels
 
-projectsview - projects view
+the home screen uses `assets/home/home.jpg` as its background.
 
-contactview - contact view
+## projects
 
-## css
+projects are stored inside the `projdata` array in `script.js`.
 
-navhm - navigation home element
+each project can have:
 
-brand - site branding
+* name
+* icon
+* image
+* description
+* github
+* demo
 
-nav - navigation container
+example:
 
-navbtn - navigation button
+```js
+{
+    name: "project name",
+    icon: "",
+    image: "assets/projects/project.png",
+    description: "short description of the project",
+    github: "https://github.com/...",
+    demo: "https://..."
+}
+```
 
-navhome - home navigation button
+if the icon is left empty, the default folder icon is used.
 
-navproj - projects navigation button
+project images are stored in:
 
-navcontact - contact navigation button
+`assets/projects/`
 
-title - main title
+## contacts
 
-lead - main text
+contacts are stored inside the `contactdata` array in `script.js`.
 
-view - page view
+each contact has:
 
-active - active view state
+* name
+* image
+* link
 
-hero - home hero section
+example:
 
-iconrow - home icon row
+```js
+{
+    name: "github",
+    image: "assets/contact/github.png",
+    link: "https://github.com/..."
+}
+```
 
-deskico - desktop icon button
+contact icons are stored in:
 
-icotitle - icon title
+`assets/contact/`
 
-selected - selected state
+clicking a contact opens its link in a new tab.
 
-desktop - desktop area
+## files
 
-folder - folder button
+```text
+d/
+│
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+│
+└── assets/
+    ├── home/
+    │   └── home.jpg
+    │
+    ├── projects/
+    │   ├── proj1.png
+    │   ├── proj2.png
+    │   ├── proj3.png
+    │   ├── proj4.png
+    │   └── proj5.png
+    │
+    ├── contact/
+    │   ├── contact1.png
+    │   ├── contact2.png
+    │   ├── contact3.png
+    │   ├── contact4.png
+    │   └── contact5.png
+    │
+    └── ui/
+        ├── folder.svg
+        └── kiberov.svg
+```
 
-foldericon - folder icon
+some of the images are placeholders and can be replaced with my own assets later.
 
-folderlabel - folder name
+## running locally
 
-projicon - projects icon
+you dont need any framework or package installation to run this project.
 
-contacticon - contact icon
+### method 1 — open directly
 
-taskbar - taskbar
+open `index.html` in a browser.
 
-startbtn - start button
+this works for the basic website, but using a local server is better for testing.
 
-taskarea - task area
+### method 2 — vscode live server
 
-tasksep - taskbar separator
+open the project folder in VS Code.
 
-clock - clock
+then install the **Live Server** extension if you dont already have it.
 
-## js
+right click `index.html` and select:
 
-queryrefs - gets dom references
+`Open with Live Server`
 
-onnavclick - handles navigation clicks
+the website should open in the browser.
 
-oniconclick - handles icon clicks
+### method 3 — python server
 
-updateclock - updates the clock
+if python is installed, open a terminal inside the project folder and run:
 
-showview - switches views
+```bash
+python -m http.server 8000
+```
 
-init - starts the site
+then open:
 
-projdata - project data
+```text
+http://localhost:8000
+```
 
-dom - dom references
+to stop the server press `Ctrl + C`.
 
-t - temporary value
+## editing the website
 
-cls - class name
+most of the content can be changed directly from `script.js`.
 
-f - folder value
+to add a project, add another object to `projdata`.
 
-views - available views
+to change contacts, edit `contactdata`.
 
-v - view value
+images can be replaced inside the `assets` folders without changing the main layout as long as the file paths stay the same.
 
-target - target view
+the home wallpaper can be replaced with:
 
-ev - event value
+`assets/home/home.jpg`
 
-d - date value
+the main KIBEROV icon can be replaced with:
 
-h - hour value
+`assets/ui/kiberov.svg`
 
-m - minute value
+## navigation
 
-pm - am or pm value
+the top navigation can switch between:
 
-mm - minute text
+* home
+* projects
+* contact
 
-label - clock text
+the home screen also has project and contact options.
 
-## css variables
+the start button always returns to the home screen and closes an opened project window.
 
---bg - background
+## project windows
 
---ui - user interface
+clicking a project folder starts a short loading state before the project window opens.
 
---text - text color
+the project window contains:
 
---pixelfont - pixel font
+* project name
+* project image
+* description
+* github link when available
+* demo link when available
+* close button
 
-## new (part6)
+the window content can scroll if there is too much content to fit.
 
-renderfolders - js function to generate project folder buttons from projdata
+pressing `Esc` also closes an opened project window.
 
-folderactivate - js function that handles folder activation (selection) on click
+## keyboard support
 
-desktop - css class for the projects desktop area where folders are placed
+the website supports normal keyboard navigation.
 
-projdata keys:
-- name - project short name
-- icon - optional custom folder icon path
-- image - optional project image path
-- description - optional project description
-- github - optional github url
-- demo - optional demo url
+`Tab` can move between interactive elements.
 
-## new (part7)
+`Enter` and `Space` can activate buttons.
 
-openproj - js function to create and show a project window for a project index
+`Esc` closes an opened project window.
 
-closeproj - js function to close the open project window (if any)
+focus is also moved to the first usable element when changing views.
 
-projwin - css class for the project window frame (800×550)
+## responsive design
 
-wintitle - css class for the window title bar
+the layout is mainly designed around the desktop style, but it also scales down for smaller browser sizes.
 
-wintitleicon - css class for the 16×16 shared kiberov icon in the title bar
+project windows resize according to the available screen width.
 
-wintitletext - css class for the project name in the title bar
+project images scale down instead of forcing the page wider.
 
-winclose - css class for the red close button in the title bar
+folders and desktop icons also become smaller on narrow screens.
 
-wincontent - css class for the window content area (currently empty)
+## accessibility
 
-## new (part8)
+the website uses normal html buttons and links where possible.
 
-projtitle - css class for the large project title inside the window (pixel font)
+interactive elements have visible focus outlines.
 
-projimage - css class for the project image block (600×280, object-fit: cover)
+decorative icons are hidden from screen readers where appropriate.
 
-projdesc - css class for the project description paragraph
+project images have alt text.
 
-githublink - css class for the text-only github link
+project windows use dialog semantics and are marked as modal.
 
-demolink - css class for the text-only demo link
+## technologies
 
-## new (part10)
+* html
+* css
+* javascript
+* svg
+* jpg / png images
 
-contactdesk - id for the contact desktop region (uses existing .desktop styling and bliss wallpaper)
+no javascript framework is required.
 
-## new (part11)
+## credits
 
-1s loading - exact 1 second loading cursor before opening a project window
+made by **shaz**.
 
-cursor restore - loading cursor is restored to normal after the 1s delay or when cancelled
+the design is inspired by the look and feel of Windows XP and old desktop interfaces, while the website itself is my own project.
 
-instantclose - closeproj cancels loading and closes window immediately
+## status
 
-showview focus - showview focuses the first interactive element in the view for keyboard navigation
+the website is still being worked on.
 
-## new (part12)
-
-responsive scale - project window scales to fit smaller viewports using aspect-ratio and max-width
-
-desktop scale - desktop and folder sizes reduce on smaller screens to preserve layout
-
-projimage responsive - project image scales down with max-width:100% and preserved aspect ratio
-
-## new (part13)
-
-semantic html - use native elements and roles for accessibility
-
-aria labels - useful aria-labels and aria-modal for dialogs
-
-alt text - project images include alt text when provided
-
-focus outline - visible xp-style focus outlines for keyboard users
-
-keyboard support - Tab, Enter, Space, and Esc support interactive controls
-
-added contact desktop
-Added the contact desktop using the same desktop style and Bliss background as the projects section. Kept it empty for the contact features that will be added later.
-![image](https://cdn.hackclub.com/01a0120c-b5e4-7074-97dc-3429b4833695/image.png)
+i'll keep replacing the placeholder projects, contact icons and other assets with the actual ones as i finish them.
