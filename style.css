@@ -99,7 +99,7 @@ main
     display: block;
 }
 
-@media (max-width: 600px)
+@media (max-width: 900px)
 {
     #app
     {
@@ -109,7 +109,74 @@ main
     {
         font-size: 20px;
     }
+
+    .desktop
+    {
+        padding: 12px;
+        min-height: 240px;
+    }
+
+    .folder
+    {
+        width: 72px;
+        height: 92px;
+        padding: 4px;
+    }
+
+    .foldericon
+    {
+        width: 56px;
+        height: 42px;
+    }
+
+    .deskico
+    {
+        width: 84px;
+        height: 84px;
+    }
 }
+
+@media (max-width: 480px)
+{
+    #app
+    {
+        padding: 8px;
+    }
+    .title
+    {
+        font-size: 18px;
+    }
+
+    .desktop
+    {
+        padding: 8px;
+        min-height: 180px;
+    }
+
+    .folder
+    {
+        width: 64px;
+        height: 84px;
+    }
+
+    .foldericon
+    {
+        width: 48px;
+        height: 36px;
+    }
+
+    .projtitle
+    {
+        font-size: 20px;
+    }
+
+    .projimage
+    {
+        width: 100%;
+        height: auto;
+    }
+}
+
 
 /* home */
 .hero
@@ -191,11 +258,12 @@ main
 /* project window */
 .projwin
 {
-    width: 800px;
-    height: 550px;
+    width: min(800px, 92vw);
+    aspect-ratio: 800 / 550;
+    height: auto;
     position: fixed;
     left: 50%;
-    top: calc((100vh - 36px - 550px) / 2);
+    top: calc((100vh - 36px) / 2);
     transform: translateX(-50%);
     background: #dcdcdc;
     border: 2px solid #a0a0a0; /* thin xp bevel */
@@ -203,6 +271,7 @@ main
     z-index: 60;
     display: flex;
     flex-direction: column;
+    max-height: calc(100vh - 56px);
 }
 
 .wintitle
@@ -282,6 +351,9 @@ main
     display: block;
     border: 1px solid #999999;
     margin-bottom: 12px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 600 / 280;
 }
 
 .projdesc

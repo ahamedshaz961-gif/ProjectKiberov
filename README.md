@@ -182,6 +182,14 @@ instantclose - closeproj cancels loading and closes window immediately
 
 showview focus - showview focuses the first interactive element in the view for keyboard navigation
 
+## new (part12)
+
+responsive scale - project window scales to fit smaller viewports using aspect-ratio and max-width
+
+desktop scale - desktop and folder sizes reduce on smaller screens to preserve layout
+
+projimage responsive - project image scales down with max-width:100% and preserved aspect ratio
+
 added contact desktop
 Added the contact desktop using the same desktop style and Bliss background as the projects section. Kept it empty for the contact features that will be added later.
 ![image](https://cdn.hackclub.com/01a0120c-b5e4-7074-97dc-3429b4833695/image.png)
