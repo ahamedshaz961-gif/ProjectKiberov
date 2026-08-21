@@ -172,6 +172,16 @@ demolink - css class for the text-only demo link
 
 contactdesk - id for the contact desktop region (uses existing .desktop styling and bliss wallpaper)
 
+## new (part11)
+
+1s loading - exact 1 second loading cursor before opening a project window
+
+cursor restore - loading cursor is restored to normal after the 1s delay or when cancelled
+
+instantclose - closeproj cancels loading and closes window immediately
+
+showview focus - showview focuses the first interactive element in the view for keyboard navigation
+
 added contact desktop
 Added the contact desktop using the same desktop style and Bliss background as the projects section. Kept it empty for the contact features that will be added later.
 ![image](https://cdn.hackclub.com/01a0120c-b5e4-7074-97dc-3429b4833695/image.png)

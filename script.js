@@ -99,6 +99,15 @@ function showview(id)
     if (target)
     {
         target.classList.add("active");
+        // focus first interactive element for keyboard navigation (instant transition)
+        setTimeout(function()
+        {
+            const focusable = target.querySelector("button, a[href], input, [tabindex]:not([tabindex='-1'])");
+            if (focusable)
+            {
+                focusable.focus();
+            }
+        }, 0);
     }
 }
 
